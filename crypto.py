@@ -4,8 +4,11 @@ import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+#FOR THE FOLLOWING MAKE A .ENV FILE WITH CONTENTS LIKE: COIN_API_KEY=<api_key>
 load_dotenv()
 api_key = os.getenv("COIN_API_KEY")
+
+WEBHOOK_URL = 'ENTER WEBHOOK URL HERE'
 
 def get_prices():
     coins = ['bitcoin', 'ethereum', 'solana']
@@ -40,7 +43,7 @@ def send_webhook(message, webhook):
 def main():
     try:
         message = get_prices()
-        send_webhook(message, 'https://discordapp.com/api/webhooks/1450960742902665501/JPEDtRmU6mAGCH9qzEcgY2mntMByDkXljVIpUqN8ubLc2jvoNxYbUQLBHUGcVpnHJDcF')
+        send_webhook(message, WEBHOOK_URL)
     except Exception as e:
         print("Error in main", e)
 
